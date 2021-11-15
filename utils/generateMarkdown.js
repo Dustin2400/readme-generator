@@ -12,7 +12,7 @@ function renderLicenseBadge(license) {
 // If there is no license, return an empty string
 function renderLicenseLink(license) {
   if (license) {
-    return ``
+    return `https://opensource.org/licenses/${license}`
   } else {
     return ``
   }
@@ -22,10 +22,7 @@ function renderLicenseLink(license) {
 // If there is no license, return an empty string
 function renderLicenseSection(license) {
   if (license) {
-    return `## License
-      ${license}
-      ${renderLicenseLink(license)}
-    `
+    return `[${license}](${renderLicenseLink(license)})`
   } else {
     return ``
   }
@@ -33,7 +30,6 @@ function renderLicenseSection(license) {
 
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
-  console.log(data);
   return `
   
   
@@ -44,16 +40,17 @@ function generateMarkdown(data) {
   ${data.description}
 
   ## Table of Contents
-  *[Installation](#installation)
-  *[Usage](#usage)
-  *[License](#license)
-  *[Contributors](#contributors)
-  *[Tests](#tests)
+  *[Installation](#installation)\n
+  *[Usage](#usage)\n
+  *[License](#license)\n
+  *[Contributors](#contributors)\n
+  *[Tests](#tests)\n
   *[Questions](#questions)
 
   ## Installation
   ${data.installation}
 
+  ## License
   ${renderLicenseSection(data.license)}
 
   ## Contributors
@@ -65,9 +62,9 @@ function generateMarkdown(data) {
   ## Questions
   Reach out if you have any questions.
 
-  GitHub: ${data.github}
+  [GitHub: ${data.github}](https://github.com/${data.github})
 
-  e-mail: ${data.email}
+  [e-mail: ${data.email}](mailto:${data.email})
 `;
 }
 

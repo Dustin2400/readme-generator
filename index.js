@@ -10,14 +10,14 @@ const questions = [
         type: 'input',
         name: 'title',
         message: 'What is the title of your project?',
-        // validate: nameInput => {
-        //     if (nameInput) {
-        //         return true;
-        //     } else {
-        //         console.log('Please enter the title of your project!');
-        //         return false;
-        //     }
-        // }
+        validate: nameInput => {
+            if (nameInput) {
+                return true;
+            } else {
+                console.log('Please enter the title of your project!');
+                return false;
+            }
+        }
     },
     {
         type: 'input',
@@ -127,20 +127,23 @@ const questions = [
 
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {
-    const pageMarkdown = generateMarkdown(data);
-    fs.writeFile(fileName, pageMarkdown, err => {
-        if (err) {
-            rejects(err);
-            return;
-        }
+    return new Promise((resolve, reject) => {
+        fs.writeFile(fileName, data, err => {
+            if (err) {
+                reject(err);
+                return;
+            }
+            console.log('File Created!')
+        });
     });
-}
+};
 
 // TODO: Create a function to initialize app
 function init() {
     inquirer.prompt(questions)
     .then((answer) => {
-        writeToFile('README.md', answer);
+        const pageMarkdown = generateMarkdown(answer);
+        writeToFile('generatedREADME.md', pageMarkdown);
     });
 }
 
