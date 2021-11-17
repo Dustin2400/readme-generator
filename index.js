@@ -60,6 +60,11 @@ const questions = [
     },
     {
         type: 'input',
+        name: 'image',
+        message: 'Provide the relative path for an image of your application'
+    },
+    {
+        type: 'input',
         name: 'license',
         message: 'What liscence do you have?',
         validate: nameInput => {

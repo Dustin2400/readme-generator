@@ -28,6 +28,14 @@ function renderLicenseSection(license) {
   }
 }
 
+function getImage(image) {
+  if(image){
+    return `![screenshot](${image})`
+  } else {
+    return ``
+  }
+}
+
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
   return `
@@ -49,6 +57,10 @@ function generateMarkdown(data) {
 
   ## Installation
   ${data.installation}
+
+  ## Usage
+  ${data.usage}
+  ${getImage(data.image)}
 
   ## License
   ${renderLicenseSection(data.license)}
